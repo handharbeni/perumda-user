@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme">
+    <FrameLayout
+        app:layout_collapseMode="pin"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/your_image_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:src="@drawable/water_wallpaper"/>
+
+        <View
+            android:id="@+id/shadow_view"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:alpha=".7"
+            android:background="#000000"/>
+    </FrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/ic_perumda_title"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ON DEV"
+        android:layout_marginBottom="64dp"
+        android:textSize="32sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-light"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+</RelativeLayout>

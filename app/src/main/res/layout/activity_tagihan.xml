@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    app:behavior_hideable="false"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:minHeight="500dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:weightSum="1"
+            android:id="@+id/bottomSheetTagihan"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="0.8"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="numberSigned"
+                    android:imeOptions="actionGo"
+                    android:id="@+id/nosal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nomor Saluran" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/btnCariTagihan"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.2"
+                android:text="CARI"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/loading"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvResult"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Nomor Saluran"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtNosal"
+                        android:text="NOMOR SALURAN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nama" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtNama"
+                        android:text="NAMA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/txtAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ALAMAT" />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Kode Golongan" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtKodeGolongan"
+                        android:text="KODE GOLONGAN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Golongan" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtGolongan"
+                        android:text="GOLONGAN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pakai" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtPakai"
+                        android:text="PAKAI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Sisa" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtSisa"
+                        android:text="SISA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Harga" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtHarga"
+                        android:text="HARGA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Administrasi" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtAdm"
+                        android:text="ADMINISTRASI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Administrasi Layanan" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtAdmLayanan"
+                        android:text="ADMINSTRASI LAYANAN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nominal" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtNominal"
+                        android:text="NOMINAL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Status Bayar" />
+                    <TextView
+                        android:text=":"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtStatusBayar"
+                        android:text="STATUS BAYAR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
