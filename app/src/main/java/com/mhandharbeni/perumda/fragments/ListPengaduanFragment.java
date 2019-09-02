@@ -91,7 +91,7 @@ public class ListPengaduanFragment extends BottomSheetDialogFragment {
 
     public void initAdapter(){
         linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        adapterPengaduan = new AdapterPengaduan(getActivity().getApplicationContext(), listPengaduan);
+        adapterPengaduan = new AdapterPengaduan(getActivity().getApplicationContext(), listPengaduan, getActivity());
         rvPengaduan.setAdapter(adapterPengaduan);
         rvPengaduan.setLayoutManager(linearLayoutManager);
     }

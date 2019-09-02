@@ -61,7 +61,8 @@ public class LoginActivity extends BaseActivity {
                         AppPreferences.getInstance(getApplicationContext()).setPref(Constant.PROFILE_NAMA_BELAKANG, dataLogin.getNamabelakang());
                         AppPreferences.getInstance(getApplicationContext()).setPref(Constant.PROFILE_NOHP, nohandphone.getText().toString());
                         AppPreferences.getInstance(getApplicationContext()).setPref(Constant.PROFILE_PASSWORD, password.getText().toString());
-                        AppPreferences.getInstance(getApplicationContext()).setPref(Constant.PROFILE_IMAGE, dataLogin.getImage());
+                        AppPreferences.getInstance(getApplicationContext()).setPref(Constant.PROFILE_IMAGE, dataLogin.getImage()!=null?dataLogin.getImage():Constant.DEFAULT_IMAGE_ACCOUNT);
+                        AppPreferences.getInstance(getApplicationContext()).setPref(Constant.PROFILE_ALAMAT, dataLogin.getAlamat());
                         AppPreferences.getInstance(getApplicationContext()).setPref(Constant.IS_LOGGEDIN, true);
 
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));

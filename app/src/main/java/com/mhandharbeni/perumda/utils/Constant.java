@@ -4,7 +4,7 @@ package com.mhandharbeni.perumda.utils;
 import android.Manifest;
 
 public class Constant {
-    public static final int versionDb = 2;
+    public static final int versionDb = 3;
     public static final String nameDb = "perumda.db";
     public static final String TAG = "PERUMDA USER";
     public static String BASE_URL = "https://api.pdamkabmalang.com/puslitbang/";
@@ -22,6 +22,9 @@ public class Constant {
     public static String PROFILE_ALAMAT = "ALAMAT";
     public static String PROFILE_IMAGE = "IMAGE";
     public static String IS_LOGGEDIN = "IS_LOGGEDIN";
+
+    public static String LAST_LATITUDE = "LATITUDE";
+    public static String LAST_LONGITUDE = "LONGITUDE";
 //    public static String
 
     public static int RESPONSE_CODE = 200;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,8 +28,13 @@ import com.mhandharbeni.perumda.preferences.AppPreferences;
 import com.mhandharbeni.perumda.room.entity.ResponseUpdateProfile;
 import com.mhandharbeni.perumda.utils.Constant;
 import com.mhandharbeni.perumda.utils.Tools;
+import com.squareup.picasso.Picasso;
+import com.stfalcon.imageviewer.StfalconImageViewer;
+import com.stfalcon.imageviewer.loader.ImageLoader;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -126,7 +133,15 @@ public class ProfileFragment extends BottomSheetDialogFragment {
                 if (response.isSuccessful()){
                     if (response.body().getCode().equalsIgnoreCase("200")){
                         AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_NOSAL, nosal.getText().toString());
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_EMAIL, email.getText().toString());
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_NAMA_DEPAN, namadepan.getText().toString());
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_NAMA_BELAKANG, namabeklakang.getText().toString());
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_NOHP, nohandphone.getText().toString());
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_PASSWORD, password.getText().toString());
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_IMAGE, image);
+                        AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.PROFILE_ALAMAT, alamat.getText().toString());
                         Toast.makeText(getActivity().getApplicationContext(), "Update Profile Berhasil", Toast.LENGTH_SHORT).show();
+                        dismiss();
                     }
                 }
             }
@@ -140,6 +155,7 @@ public class ProfileFragment extends BottomSheetDialogFragment {
 
     @OnClick(R.id.btnLogout)
     public void logout(){
+        AppPreferences.getInstance(getActivity().getApplicationContext()).getPref().forceDeleteExistingPreferences();
         AppPreferences.getInstance(getActivity().getApplicationContext()).setPref(Constant.IS_LOGGEDIN, false);
         getActivity().startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
         getActivity().finish();

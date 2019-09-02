@@ -72,11 +72,18 @@ public class DetailPengaduanActivity extends BaseActivity {
     }
 
     private void initData(){
-        Glide.with(this)
-                .asBitmap()
-                .load(Tools.decodeString(dataListPengaduan.getImage()))
-                .error(R.drawable.water_wallpaper)
-                .into(pengaduanCover);
+        try {
+            Glide.with(this)
+                    .asBitmap()
+                    .load(Tools.decodeString(dataListPengaduan.getImage()))
+                    .error(R.drawable.water_wallpaper)
+                    .into(pengaduanCover);
+        }catch (Exception e){
+            Glide.with(this)
+                    .asBitmap()
+                    .load(R.drawable.water_wallpaper)
+                    .into(pengaduanCover);
+        }
         nopengaduan.setText(dataListPengaduan.getNopengaduan());
         tvnopengaduan.setText(dataListPengaduan.getNopengaduan());
         tvstatuspengaduan.setText(dataListPengaduan.getStatus());

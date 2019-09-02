@@ -1,6 +1,8 @@
 package com.mhandharbeni.perumda.network;
 
 import com.mhandharbeni.perumda.network.model.GeneralResponse;
+import com.mhandharbeni.perumda.room.entity.ResponseGangguan;
+import com.mhandharbeni.perumda.room.entity.ResponseImageSlider;
 import com.mhandharbeni.perumda.room.entity.ResponseListPengaduan;
 import com.mhandharbeni.perumda.room.entity.ResponseLogin;
 import com.mhandharbeni.perumda.room.entity.ResponseLoket;
@@ -145,4 +147,17 @@ public interface InterfaceService {
             @Field("fotoktp") String fotoktp,
             @Field("token") String token
     );
+
+    @FormUrlEncoded
+    @POST("pelanggan/getgangguan")
+    Call<ResponseGangguan> getGangguan(
+            @Field("token") String token
+    );
+
+    @FormUrlEncoded
+    @POST("pelanggan/getsplash")
+    Call<ResponseImageSlider> getImageSlider(
+            @Field("dummyparams") String params
+    );
+
 }

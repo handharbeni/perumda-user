@@ -28,6 +28,9 @@ public class DataLogin {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("alamat")
+    @Expose
+    private String alamat;
 
     public String getId() {
         return id;
@@ -91,5 +94,13 @@ public class DataLogin {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 }

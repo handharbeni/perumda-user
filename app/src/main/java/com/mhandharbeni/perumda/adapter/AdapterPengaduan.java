@@ -1,5 +1,6 @@
 package com.mhandharbeni.perumda.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -26,10 +28,12 @@ import butterknife.ButterKnife;
 public class AdapterPengaduan extends RecyclerView.Adapter<AdapterPengaduan.ViewHolder> {
     private Context context;
     private List<DataListPengaduan> listPengaduan;
+    private Activity activity;
 
-    public AdapterPengaduan(Context context, List<DataListPengaduan> listPengaduan) {
+    public AdapterPengaduan(Context context, List<DataListPengaduan> listPengaduan, Activity activity) {
         this.context = context;
         this.listPengaduan = listPengaduan;
+        this.activity = activity;
     }
 
     @NonNull
@@ -45,9 +49,11 @@ public class AdapterPengaduan extends RecyclerView.Adapter<AdapterPengaduan.View
         holder.bindData(listPengaduan.get(position));
         holder.itemView.setOnClickListener(view -> {
             new DataListPengaduan();
+//            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.imageCover, "imageHeader");
             DataListPengaduan dataListPengaduan = listPengaduan.get(position);
             Intent intent = new Intent(context, DetailPengaduanActivity.class);
             intent.putExtra(Constant.SERIALIZABLE_PENGADUAN, dataListPengaduan);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
     }
@@ -86,10 +92,16 @@ public class AdapterPengaduan extends RecyclerView.Adapter<AdapterPengaduan.View
             txtNama.setText(dataListPengaduan.getNama());
             txtAlamat.setText(dataListPengaduan.getAlamat());
 
-            Glide.with(context)
-                    .load(Tools.decodeString(dataListPengaduan.getImage()))
-                    .error(R.drawable.water_wallpaper)
-                    .into(imageCover);
+            if (dataListPengaduan.getImage() != null){
+                Glide.with(context)
+                        .load(Tools.decodeString(dataListPengaduan.getImage()))
+                        .error(R.drawable.water_wallpaper)
+                        .into(imageCover);
+            }else{
+                Glide.with(context)
+                        .load(R.drawable.water_wallpaper)
+                        .into(imageCover);
+            }
         }
     }
 }

@@ -14,9 +14,11 @@ import com.mhandharbeni.perumda.network.InterfaceService;
 import com.mhandharbeni.perumda.network.model.GeneralResponse;
 import com.mhandharbeni.perumda.preferences.AppPreferences;
 import com.mhandharbeni.perumda.room.db.AppDb;
+import com.mhandharbeni.perumda.room.entity.ResponseImageSlider;
 import com.mhandharbeni.perumda.room.entity.ResponseLoket;
 import com.mhandharbeni.perumda.room.entity.ResponseToken;
 import com.mhandharbeni.perumda.room.entity.ResponseUnit;
+import com.mhandharbeni.perumda.room.entity.data.DataImageSlider;
 import com.mhandharbeni.perumda.room.entity.data.DataLoket;
 import com.mhandharbeni.perumda.room.entity.data.DataUnit;
 import com.mhandharbeni.perumda.utils.BaseActivity;
@@ -53,16 +55,16 @@ public class SplashScreen extends AppCompatActivity {
                         AppDb.getInstance(getApplicationContext()).unitInterfaceDao().insertAll(listUnit);
                         initDataLoket();
                     }else{
-                        initToken();
+                        initDataSplash();
                     }
                 }else{
-                    initToken();
+                    initDataSplash();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseUnit> call, Throwable t) {
-                initToken();
+                initDataSplash();
             }
         });
     }
@@ -78,6 +80,31 @@ public class SplashScreen extends AppCompatActivity {
                     if (response.body().getCode().equalsIgnoreCase("200")){
                         List<DataLoket> listLoket = response.body().getData();
                         AppDb.getInstance(getApplicationContext()).loketInterfaceDao().insertAll(listLoket);
+                        initDataSplash();
+                    }else{
+                        initDataSplash();
+                    }
+                }else{
+                    initDataSplash();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseLoket> call, Throwable t) {
+                initDataSplash();
+            }
+        });
+    }
+
+    private void initDataSplash(){
+        Call<ResponseImageSlider> call = interfaceService.getImageSlider("haha");
+        call.enqueue(new Callback<ResponseImageSlider>() {
+            @Override
+            public void onResponse(Call<ResponseImageSlider> call, Response<ResponseImageSlider> response) {
+                if (response.isSuccessful()){
+                    if (response.body().getCode().equalsIgnoreCase("200")){
+                        List<DataImageSlider> listSlider = response.body().getData();
+                        AppDb.getInstance(getApplicationContext()).imageSliderInterfaceDao().insertAll(listSlider);
                         initToken();
                     }else{
                         initToken();
@@ -88,7 +115,7 @@ public class SplashScreen extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseLoket> call, Throwable t) {
+            public void onFailure(Call<ResponseImageSlider> call, Throwable t) {
                 initToken();
             }
         });

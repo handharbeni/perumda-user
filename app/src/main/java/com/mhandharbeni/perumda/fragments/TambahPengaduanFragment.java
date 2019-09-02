@@ -112,6 +112,8 @@ public class TambahPengaduanFragment extends BottomSheetDialogFragment {
     @OnClick(R.id.btnSimpan)
     public void postPengaduan(){
         try {
+            String lat = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.LAST_LATITUDE, "0.0");
+            String lng = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.LAST_LONGITUDE, "0.0");
             Chip chip = view.findViewById(jnsaduan.getCheckedChipId());
             String token = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.TOKEN_PDAM, "");
             String nohandphone = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.PROFILE_NOHP, "");
@@ -124,7 +126,7 @@ public class TambahPengaduanFragment extends BottomSheetDialogFragment {
                     chip.getText().toString().equalsIgnoreCase("TEKNIS")?"TKNS":"ADM",
                     isiaduan.getText().toString(),
                     encodedFoto,
-                    "123,123;123,123"
+                    lat+";"+lng
             );
             call.enqueue(new Callback<GeneralResponse>() {
                 @Override

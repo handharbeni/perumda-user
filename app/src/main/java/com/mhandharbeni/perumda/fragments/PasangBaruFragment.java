@@ -48,6 +48,8 @@ public class PasangBaruFragment extends BottomSheetDialogFragment {
     EditText alamat;
     @BindView(R.id.noktp)
     EditText noktp;
+    @BindView(R.id.alamatpersil)
+    EditText alamatpersil;
     @BindView(R.id.nohandphone)
     EditText nohp;
     @BindView(R.id.fotoktp)
@@ -139,7 +141,7 @@ public class PasangBaruFragment extends BottomSheetDialogFragment {
                 alamat.getText().toString(),
                 noktp.getText().toString(),
                 nohp.getText().toString(),
-                "123.123;123.123",
+                alamatpersil.getText().toString(),
                 encodedFotoKTP,
                 token
         );

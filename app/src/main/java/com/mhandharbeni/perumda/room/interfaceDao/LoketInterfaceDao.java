@@ -2,6 +2,7 @@ package com.mhandharbeni.perumda.room.interfaceDao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Query;
 
 import com.mhandharbeni.perumda.room.entity.data.DataLoket;
 
@@ -16,4 +17,7 @@ public interface LoketInterfaceDao {
 
     @Insert(onConflict = REPLACE)
     void insert(DataLoket dataLoket);
+
+    @Query("SELECT * FROM DataLoket")
+    List<DataLoket> getAll();
 }

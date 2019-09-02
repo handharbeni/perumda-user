@@ -11,6 +11,7 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">false</item>
         <item name="windowActionBarOverlay">false</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
     </style>
     <style name="SplashScreenStyle" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@drawable/logo_splash</item>

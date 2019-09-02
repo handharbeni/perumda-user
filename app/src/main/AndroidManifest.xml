@@ -38,6 +38,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MapLoketActivity"/>
         <activity android:name=".sub_activity.DetailPengaduanActivity" />
+        <activity android:name=".sub_activity.DetailGangguanActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

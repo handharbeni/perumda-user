@@ -10,168 +10,173 @@
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     android:layout_height="match_parent"
     tools:ignore="UnusedAttribute">
-    <LinearLayout
-        android:background="@android:color/transparent"
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:src="@drawable/wp_profile"
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"/>
+
         <LinearLayout
             android:background="@android:color/transparent"
-            android:layout_marginTop="-100dp"
-            android:id="@+id/bottomSheetProfile"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:padding="15dp"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/wp_profile"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
             <LinearLayout
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageProfile"
-                    app:civ_circle_background_color="@color/colorPrimary"
-                    app:civ_border_color="@color/colorAccent"
-                    app:srcCompat="@drawable/ic_account_circle"
-                    android:src="@drawable/ic_account_circle"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    tools:ignore="VectorDrawableCompat" />
-                <de.hdodenhof.circleimageview.CircleImageView
-                    app:civ_circle_background_color="@color/colorAccent"
-                    app:civ_border_color="@color/colorAccent"
-                    app:civ_border_width="5dp"
-                    android:layout_marginLeft="-50dp"
-                    android:layout_gravity="bottom"
-                    android:src="@drawable/ic_photo_camera"
-                    app:srcCompat="@drawable/ic_photo_camera"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    tools:ignore="VectorDrawableCompat" />
+                android:background="@android:color/transparent"
+                android:layout_marginTop="-100dp"
+                android:id="@+id/bottomSheetProfile"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:padding="15dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageProfile"
+                        app:civ_circle_background_color="@color/colorPrimary"
+                        app:civ_border_color="@color/colorAccent"
+                        app:srcCompat="@drawable/ic_account_circle"
+                        android:src="@drawable/ic_account_circle"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        tools:ignore="VectorDrawableCompat" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        app:civ_circle_background_color="@color/colorAccent"
+                        app:civ_border_color="@color/colorAccent"
+                        app:civ_border_width="5dp"
+                        android:layout_marginLeft="-50dp"
+                        android:layout_gravity="bottom"
+                        android:src="@drawable/ic_photo_camera"
+                        app:srcCompat="@drawable/ic_photo_camera"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        tools:ignore="VectorDrawableCompat" />
+                </LinearLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/nosal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomor Saluran" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/namadepan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Depan" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/namabelakang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Belakang" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionNext"
+                        android:maxLines="1"
+                        android:enabled="false"
+                        android:id="@+id/nohandphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomor Handphone" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    app:passwordToggleEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:imeOptions="actionDone"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/btnSimpanProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SIMPAN" />
+
+                <Button
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="KELUAR" />
+
             </LinearLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:id="@+id/nosal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nomor Saluran" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:id="@+id/namadepan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Depan" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:id="@+id/namabelakang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Belakang" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:visibility="gone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionNext"
-                    android:maxLines="1"
-                    android:enabled="false"
-                    android:id="@+id/nohandphone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nomor Handphone" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:id="@+id/alamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Alamat" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                app:passwordToggleEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:imeOptions="actionDone"
-                    android:maxLines="1"
-                    android:inputType="textPassword"
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:id="@+id/btnSimpanProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SIMPAN" />
-
-            <Button
-                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="KELUAR" />
-
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </androidx.core.widget.NestedScrollView>

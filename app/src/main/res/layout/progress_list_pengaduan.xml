@@ -11,13 +11,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
+            android:textAllCaps="true"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/labelProgress"
+            android:textAlignment="center"
+            android:text="TIMELINE PROGRES PENGADUAN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <ProgressBar
+            android:layout_below="@+id/labelProgress"
             android:id="@+id/loading"
             android:visibility="gone"
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp" />
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/labelProgress"
             android:layout_marginLeft="10dp"
             android:minHeight="500dp"
             android:id="@+id/listProgress"

@@ -1,11 +1,7 @@
 package com.mhandharbeni.perumda;
 
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -15,12 +11,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.mhandharbeni.perumda.room.db.AppDb;
+import com.mhandharbeni.perumda.room.entity.data.DataLoket;
 import com.mhandharbeni.perumda.room.entity.data.DataUnit;
 import com.mhandharbeni.perumda.utils.BaseActivity;
+import com.mhandharbeni.perumda.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +38,18 @@ public class MapLoketActivity extends BaseActivity implements OnMapReadyCallback
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
+    @BindView(R.id.grupPilihan)
+    ChipGroup grupPilihan;
+
+    @BindView(R.id.chipLoket)
+    Chip chipLoket;
+
+    @BindView(R.id.chipUnit)
+    Chip chipUnit;
+
     private GoogleMap mMap = null;
+
+    boolean firstUp = true;
 
     private static final String TAG = MapLoketActivity.class.getSimpleName();
 
@@ -51,19 +66,35 @@ public class MapLoketActivity extends BaseActivity implements OnMapReadyCallback
     };
 
     private static final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
+    private MapLoketActivity mapLoketActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mapLoketActivity = this;
+
         if (savedInstanceState != null) {
             mSelectedStyleId = savedInstanceState.getInt(SELECTED_STYLE);
         }
         setContentView(R.layout.activity_maps_loket);
-        ButterKnife.bind(this);
+        ButterKnife.bind(mapLoketActivity);
         hideAppBar();
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(mapLoketActivity);
+
+
+        Dexter.withActivity(this).withPermissions(Constant.listPermission).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport report) {
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+            }
+        }).check();
     }
 
     @Override
@@ -76,17 +107,21 @@ public class MapLoketActivity extends BaseActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap map) {
         mMap = map;
         mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationChangeListener(location ->
-                mMap.moveCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                                new LatLng(location.getLatitude(), location.getLongitude()),
-                                10
-                        )
-                )
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        mMap.setOnMyLocationChangeListener(location ->{
+                if (firstUp){
+                    firstUp = false;
+                    mMap.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                    new LatLng(location.getLatitude(), location.getLongitude()),
+                                    10
+                            )
+                    );
+                }
+            }
         );
         setSelectedStyle();
-        initDataUnit();
-        map.setOnMarkerClickListener(marker -> false);
+        initDataLoket();
     }
 
     @OnClick(R.id.fab)
@@ -101,9 +136,6 @@ public class MapLoketActivity extends BaseActivity implements OnMapReadyCallback
         builder.setItems(styleNames.toArray(new CharSequence[styleNames.size()]),
                 (dialog, which) -> {
                     mSelectedStyleId = mStyleIds[which];
-//                    String msg = getString(R.string.style_set_to, getString(mSelectedStyleId));
-//                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
-//                    Log.d(TAG, msg);
                     setSelectedStyle();
                 });
         builder.show();
@@ -160,6 +192,14 @@ public class MapLoketActivity extends BaseActivity implements OnMapReadyCallback
         }
     }
 
+    private void initDataLoket(){
+        List<DataLoket> listLoket = AppDb.getInstance(getApplicationContext()).loketInterfaceDao().getAll();
+        for (DataLoket dataLoket : listLoket){
+            LatLng latLng = new LatLng(Double.valueOf(dataLoket.getGpslat()), Double.valueOf(dataLoket.getGpslon()));
+            addMarker(mMap, latLng, dataLoket.getLoket(), dataLoket.getPhone());
+        }
+    }
+
     private void addMarker(GoogleMap map, LatLng location, String title, String snippet){
         map.addMarker(
                 new MarkerOptions()
@@ -168,4 +208,32 @@ public class MapLoketActivity extends BaseActivity implements OnMapReadyCallback
                 .snippet(snippet)
         );
     }
+
+    @OnClick({R.id.chipUnit, R.id.chipLoket})
+    public void changeChoice(View view){
+        Chip chip = findViewById(view.getId());
+        if (chip.isChecked()){
+            switch (chip.getText().toString()){
+                case "LOKET" :
+                    firstUp = true;
+                    clearMaps();
+                    initDataLoket();
+                    break;
+                case "UNIT" :
+                    firstUp = true;
+                    clearMaps();
+                    initDataUnit();
+                    break;
+            }
+        }else{
+            clearMaps();
+        }
+    }
+
+    private void clearMaps(){
+        if (mMap != null){
+            mMap.clear();
+        }
+    }
+
 }

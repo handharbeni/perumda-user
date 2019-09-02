@@ -12,6 +12,10 @@ import com.github.vipulasri.timelineview.TimelineView;
 import com.mhandharbeni.perumda.R;
 import com.mhandharbeni.perumda.room.entity.data.DataProgressPengaduan;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -46,6 +50,7 @@ public class AdapterProgressPengaduan extends RecyclerView.Adapter<AdapterProgre
     public void updateData(List<DataProgressPengaduan> newList){
         this.listProgress.clear();
         this.listProgress.addAll(newList);
+        Collections.reverse(this.listProgress);
         this.notifyDataSetChanged();
     }
 
@@ -58,6 +63,10 @@ public class AdapterProgressPengaduan extends RecyclerView.Adapter<AdapterProgre
         TextView title;
         @BindView(R.id.timeline)
         TimelineView timelineView;
+        @BindView(R.id.tvtglrencana)
+        TextView tvtglrencana;
+        @BindView(R.id.tvjamrencana)
+        TextView tvjamrencana;
         public ViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -65,6 +74,13 @@ public class AdapterProgressPengaduan extends RecyclerView.Adapter<AdapterProgre
         }
 
         public void bindData(DataProgressPengaduan dataProgressPengaduan){
+            if (dataProgressPengaduan.getStatus().equalsIgnoreCase("0")){
+                timelineView.setMarker(context.getResources().getDrawable(R.drawable.ic_done));
+            }else if (dataProgressPengaduan.getStatus().equalsIgnoreCase("1")){
+                timelineView.setMarker(context.getResources().getDrawable(R.drawable.ic_progress));
+            }
+            tvtglrencana.setText(dataProgressPengaduan.getTgl_tindakan());
+            tvjamrencana.setText(dataProgressPengaduan.getJam_tindakan());
             title.setText(dataProgressPengaduan.getTindakan());
         }
     }

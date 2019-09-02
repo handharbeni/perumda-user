@@ -77,6 +77,20 @@
                 android:inputType="text"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
+                android:id="@+id/alamatpersil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alamat Persil" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:id="@+id/nohandphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
