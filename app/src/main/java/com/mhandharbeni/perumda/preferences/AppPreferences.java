@@ -17,11 +17,10 @@ public class AppPreferences implements Serializable {
     public static AppPreferences getInstance(Context context){
         if(appPreferences == null){
             synchronized (AppPreferences.class){
-                if (appPreferences == null || encryptedPreferences == null) {
+                if (appPreferences == null) {
                     appPreferences = new AppPreferences();
                     encryptedPreferences = new EncryptedPreferences.Builder(context)
                             .withEncryptionPassword("PASSWORD ENCRYPTED")
-                            .withSaveAsSingleton(true)
                             .build();
                 }
             }

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,9 +42,15 @@ public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bindData(listGangguan.get(position));
+        DataGangguan dataGangguan = listGangguan.get(position);
+        holder.bindData(dataGangguan);
+        ViewCompat.setTransitionName(holder.gangguancover, dataGangguan.getFoto());
         holder.itemView.setOnClickListener(view -> {
-            this.listenerGangguan.onGangguanClick(listGangguan.get(position));
+            this.listenerGangguan.onGangguanClick(
+                    holder.getAdapterPosition(),
+                    dataGangguan,
+                    holder.gangguancover
+            );
         });
     }
 
@@ -63,6 +70,8 @@ public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.ViewHolder
         ImageView gangguancover;
         @BindView(R.id.gangguantitle)
         TextView gangguantitle;
+        @BindView(R.id.gangguanunit)
+        TextView gangguanunit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,10 +85,11 @@ public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.ViewHolder
                 Glide.with(context).load(R.drawable.water_wallpaper).into(gangguancover);
             }
             gangguantitle.setText(dataGangguan.getJudulGangguan());
+            gangguanunit.setText(dataGangguan.getUnitGangguan());
         }
     }
 
     public interface ListenerGangguan{
-        void onGangguanClick(DataGangguan dataGangguan);
+        void onGangguanClick(int position, DataGangguan dataGangguan, ImageView imageView);
     }
 }

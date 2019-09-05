@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.chivorn.smartmaterialspinner.SmartMaterialSpinner;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -26,10 +28,14 @@ import com.mhandharbeni.perumda.network.Client;
 import com.mhandharbeni.perumda.network.InterfaceService;
 import com.mhandharbeni.perumda.network.model.GeneralResponse;
 import com.mhandharbeni.perumda.preferences.AppPreferences;
+import com.mhandharbeni.perumda.room.db.AppDb;
+import com.mhandharbeni.perumda.room.entity.data.DataUnit;
 import com.mhandharbeni.perumda.utils.Constant;
 import com.mhandharbeni.perumda.utils.Tools;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,8 +66,12 @@ public class TambahPengaduanFragment extends BottomSheetDialogFragment {
     ImageView foto;
     @BindView(R.id.btnSimpan)
     Button btnSimpan;
+    @BindView(R.id.unitlayanan)
+    SmartMaterialSpinner unitLayanan;
 
     String encodedFoto = "";
+
+    String kdUnit = "00";
 
     public TambahPengaduanFragment(){
 
@@ -85,6 +95,29 @@ public class TambahPengaduanFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initProfile();
+        initDataUnitLayanan();
+    }
+
+    private void initDataUnitLayanan(){
+        List<DataUnit> listUnit = AppDb.getInstance(getActivity().getApplicationContext()).unitInterfaceDao().getAllUnit();
+        List<String> listUnitLayanan = new ArrayList<>();
+        for (DataUnit dataUnit : listUnit){
+            listUnitLayanan.add(dataUnit.getUnit());
+        }
+        unitLayanan.setItem(listUnitLayanan);
+        unitLayanan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String unit = unitLayanan.getAdapter().getItem(position).toString();
+                kdUnit = AppDb.getInstance(getActivity().getApplicationContext()).unitInterfaceDao().getUnit(unit).getKdunit();
+//                Toast.makeText(getActivity().getApplicationContext(), kdUnit, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                kdUnit = "00";
+            }
+        });
     }
 
     @Override
@@ -111,20 +144,26 @@ public class TambahPengaduanFragment extends BottomSheetDialogFragment {
 
     @OnClick(R.id.btnSimpan)
     public void postPengaduan(){
+        if (kdUnit.equalsIgnoreCase("00")){
+            Toast.makeText(getActivity().getApplicationContext(), "Unit Layanan Belum Dipilih", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             String lat = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.LAST_LATITUDE, "0.0");
             String lng = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.LAST_LONGITUDE, "0.0");
             Chip chip = view.findViewById(jnsaduan.getCheckedChipId());
             String token = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.TOKEN_PDAM, "");
             String nohandphone = AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.PROFILE_NOHP, "");
+
             Call<GeneralResponse> call = interfaceService.postPengaduan(
                     token,
                     nohandphone,
                     nosal.getText().toString(),
                     nama.getText().toString(),
                     alamat.getText().toString(),
-                    chip.getText().toString().equalsIgnoreCase("TEKNIS")?"TKNS":"ADM",
+                    chip.getText().toString(),
                     isiaduan.getText().toString(),
+                    kdUnit,
                     encodedFoto,
                     lat+";"+lng
             );
@@ -134,6 +173,7 @@ public class TambahPengaduanFragment extends BottomSheetDialogFragment {
                     if (response.isSuccessful()){
                         if (response.body().getCode().equalsIgnoreCase("200")){
                             Toast.makeText(getActivity().getApplicationContext(), "Post Sukses", Toast.LENGTH_SHORT).show();
+                            dismiss();
                         }else{
                             Toast.makeText(getActivity().getApplicationContext(), "Post Gagal", Toast.LENGTH_SHORT).show();
                         }

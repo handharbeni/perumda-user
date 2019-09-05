@@ -20,11 +20,14 @@ import com.mhandharbeni.perumda.room.entity.ResponseToken;
 import com.mhandharbeni.perumda.room.entity.ResponseUnit;
 import com.mhandharbeni.perumda.room.entity.data.DataImageSlider;
 import com.mhandharbeni.perumda.room.entity.data.DataLoket;
+import com.mhandharbeni.perumda.room.entity.data.DataToken;
 import com.mhandharbeni.perumda.room.entity.data.DataUnit;
 import com.mhandharbeni.perumda.utils.BaseActivity;
 import com.mhandharbeni.perumda.utils.Constant;
 import com.mhandharbeni.perumda.utils.CoreApplication;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         interfaceService = ClientService.createService(InterfaceService.class);
         setContentView(R.layout.activity_splash_screen);
-        initDataUnit();
+        initToken();
     }
 
     private void initDataUnit(){
@@ -49,6 +52,7 @@ public class SplashScreen extends AppCompatActivity {
         call.enqueue(new Callback<ResponseUnit>() {
             @Override
             public void onResponse(Call<ResponseUnit> call, Response<ResponseUnit> response) {
+
                 if (response.isSuccessful()){
                     if (response.body().getCode().equalsIgnoreCase("200")){
                         List<DataUnit> listUnit = response.body().getData();
@@ -101,22 +105,32 @@ public class SplashScreen extends AppCompatActivity {
         call.enqueue(new Callback<ResponseImageSlider>() {
             @Override
             public void onResponse(Call<ResponseImageSlider> call, Response<ResponseImageSlider> response) {
+                new Handler().postDelayed(() -> {
+                    if (AppPreferences.getInstance(getApplicationContext()).getPref(Constant.IS_LOGGEDIN, false)){
+                        startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                    }else{
+                        startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                    }
+                    finish();
+                },2000);
                 if (response.isSuccessful()){
                     if (response.body().getCode().equalsIgnoreCase("200")){
                         List<DataImageSlider> listSlider = response.body().getData();
                         AppDb.getInstance(getApplicationContext()).imageSliderInterfaceDao().insertAll(listSlider);
-                        initToken();
-                    }else{
-                        initToken();
                     }
-                }else{
-                    initToken();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseImageSlider> call, Throwable t) {
-                initToken();
+                new Handler().postDelayed(() -> {
+                    if (AppPreferences.getInstance(getApplicationContext()).getPref(Constant.IS_LOGGEDIN, false)){
+                        startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                    }else{
+                        startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                    }
+                    finish();
+                },2000);
             }
         });
     }
@@ -127,47 +141,22 @@ public class SplashScreen extends AppCompatActivity {
             getToken.enqueue(new Callback<ResponseToken>() {
                 @Override
                 public void onResponse(Call<ResponseToken> call, Response<ResponseToken> response) {
-                    new Handler().postDelayed(() -> {
-                        if (AppPreferences.getInstance(getApplicationContext()).getPref(Constant.IS_LOGGEDIN, false)){
-                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                        }else{
-                            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                        }
-                        finish();
-                    },2000);
-
                     if (response.isSuccessful()){
-                        assert response.body() != null;
                         if (response.body().getCode().equalsIgnoreCase("200")){
-                            Log.d(Constant.TAG, "onResponse: Token "+response.body().getData().getToken());
                             AppPreferences.getInstance(getApplicationContext())
                                     .setPref(Constant.TOKEN_PDAM, response.body().getData().getToken());
                         }
                     }
-
+                    initDataUnit();
                 }
 
                 @Override
                 public void onFailure(Call<ResponseToken> call, Throwable t) {
-                    new Handler().postDelayed(() -> {
-                        if (AppPreferences.getInstance(getApplicationContext()).getPref(Constant.IS_LOGGEDIN, false)){
-                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                        }else{
-                            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                        }
-                        finish();
-                    },2000);
+                    initDataUnit();
                 }
             });
         }else{
-            new Handler().postDelayed(() -> {
-                if (AppPreferences.getInstance(getApplicationContext()).getPref(Constant.IS_LOGGEDIN, false)){
-                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                }else{
-                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                }
-                finish();
-            },2000);
+            initDataUnit();
         }
     }
 }

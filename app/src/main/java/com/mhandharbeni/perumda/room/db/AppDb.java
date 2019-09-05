@@ -11,9 +11,11 @@ import androidx.room.migration.Migration;
 
 import com.mhandharbeni.perumda.room.entity.data.DataImageSlider;
 import com.mhandharbeni.perumda.room.entity.data.DataLoket;
+import com.mhandharbeni.perumda.room.entity.data.DataToken;
 import com.mhandharbeni.perumda.room.entity.data.DataUnit;
 import com.mhandharbeni.perumda.room.interfaceDao.ImageSliderInterfaceDao;
 import com.mhandharbeni.perumda.room.interfaceDao.LoketInterfaceDao;
+import com.mhandharbeni.perumda.room.interfaceDao.TokenInterfaceDao;
 import com.mhandharbeni.perumda.room.interfaceDao.UnitInterfaceDao;
 import com.mhandharbeni.perumda.room.utils.DateConverter;
 import com.mhandharbeni.perumda.utils.Constant;
@@ -23,7 +25,8 @@ import com.mhandharbeni.perumda.utils.Constant;
         entities = {
                 DataUnit.class,
                 DataLoket.class,
-                DataImageSlider.class
+                DataImageSlider.class,
+                DataToken.class
         },
         version = Constant.versionDb,
         exportSchema = false
@@ -32,6 +35,7 @@ public abstract class AppDb extends RoomDatabase {
     public abstract UnitInterfaceDao unitInterfaceDao();
     public abstract LoketInterfaceDao loketInterfaceDao();
     public abstract ImageSliderInterfaceDao imageSliderInterfaceDao();
+    public abstract TokenInterfaceDao tokenInterfaceDao();
 
     private static volatile AppDb INSTANCE;
     public static Migration[] migrations = new Migration[]{};

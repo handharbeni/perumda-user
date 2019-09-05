@@ -25,9 +25,11 @@ import com.pddstudio.preferences.encrypted.EncryptedPreferences;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.Optional;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BaseActivity extends AppCompatActivity {
+    @Nullable
     @BindView(R.id.idProfile)
     CircleImageView idProfile;
     private FusedLocationProviderClient fusedLocationClient;

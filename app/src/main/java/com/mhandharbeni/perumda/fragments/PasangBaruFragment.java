@@ -152,6 +152,7 @@ public class PasangBaruFragment extends BottomSheetDialogFragment {
                 if (response.isSuccessful()){
                     if (response.body().getCode().equalsIgnoreCase("200")){
                         Toast.makeText(getActivity().getApplicationContext(), "Pengajuan Pasang Baru Berhasil", Toast.LENGTH_SHORT).show();
+                        dismiss();
                     }else{
                         Toast.makeText(getActivity().getApplicationContext(), "Pengajuan pasang Baru Gagal", Toast.LENGTH_SHORT).show();
                     }

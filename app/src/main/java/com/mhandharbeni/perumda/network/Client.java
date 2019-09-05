@@ -1,6 +1,5 @@
 package com.mhandharbeni.perumda.network;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.mhandharbeni.perumda.utils.Constant;
 
 import okhttp3.OkHttpClient;
@@ -11,7 +10,7 @@ public class Client {
     public static final String BASE_URL = Constant.BASE_URL;
 //    private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     private static OkHttpClient builderOkHttp = new OkHttpClient.Builder()
-            .addNetworkInterceptor(new StethoInterceptor())
+//            .addNetworkInterceptor(new StethoInterceptor())
 //            .addInterceptor(interceptor)
             .build();
     private static Retrofit.Builder builder = new Retrofit.Builder()

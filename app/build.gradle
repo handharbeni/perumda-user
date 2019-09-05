@@ -16,21 +16,38 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 android {
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.mhandharbeni.perumda"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.3"
+        versionCode 2
+        versionName "1.4"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            multiDexEnabled = true
+            debuggable = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled = false
+            multiDexEnabled = true
         }
     }
     aaptOptions {
@@ -67,19 +84,19 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.2.0-beta01"
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-    implementation "android.arch.work:work-runtime:1.0.0"
-    implementation 'com.google.android.gms:play-services-location:15.0.1'
-
+    implementation "android.arch.work:work-runtime:1.0.1"
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+//    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.pddstudio:encrypted-preferences:1.3.0'
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     implementation 'com.afollestad.material-dialogs:lifecycle:3.0.0-rc4'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
@@ -90,4 +107,20 @@ dependencies {
     implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
     implementation 'com.github.smarteist:autoimageslider:1.3.2'
     implementation 'com.github.smarteist:autoimageslider:1.3.2-appcompat'
+
+//    implementation "com.squareup.okhttp3:okhttp:3.10.0"
+//    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+//    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+//    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+//    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+//    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+//    implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.1.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

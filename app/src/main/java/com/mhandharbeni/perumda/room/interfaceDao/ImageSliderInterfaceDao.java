@@ -18,6 +18,6 @@ public interface ImageSliderInterfaceDao {
     @Insert(onConflict = REPLACE)
     void insert(DataImageSlider dataImageSlider);
 
-    @Query("SELECT * FROM DataImageSlider")
+    @Query("SELECT * FROM DataImageSlider WHERE aktif = 1")
     List<DataImageSlider> getAll();
 }

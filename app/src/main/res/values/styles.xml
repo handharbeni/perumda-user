@@ -12,9 +12,14 @@
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">false</item>
         <item name="windowActionBarOverlay">false</item>
         <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+
+        <item name="android:windowEnterTransition" tools:targetApi="lollipop">@transition/change_image_transform</item>
+        <item name="android:windowExitTransition" tools:targetApi="lollipop">@transition/change_image_transform</item>
+
+        <item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">@transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">@transition/change_image_transform</item>
     </style>
     <style name="SplashScreenStyle" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:windowBackground">@drawable/logo_splash</item>
     </style>
     <style name="SplassScreenCustom" parent="Theme.MaterialComponents.NoActionBar"/>
 

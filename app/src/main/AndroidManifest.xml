@@ -12,6 +12,9 @@
 
 
     <application
+        android:debuggable="false"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".utils.CoreApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_perumda_title"
@@ -19,7 +22,7 @@
         android:roundIcon="@drawable/ic_perumda_title"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
+        tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode,UnusedAttribute"
         android:fullBackupContent="@xml/backup_descriptor">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -39,6 +42,7 @@
         <activity android:name=".MapLoketActivity"/>
         <activity android:name=".sub_activity.DetailPengaduanActivity" />
         <activity android:name=".sub_activity.DetailGangguanActivity" />
+        <activity android:name=".sub_activity.DetailPromoActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

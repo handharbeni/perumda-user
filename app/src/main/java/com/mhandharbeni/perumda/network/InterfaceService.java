@@ -132,6 +132,7 @@ public interface InterfaceService {
             @Field("alamat") String alamat,
             @Field("jnsaduan") String jnsaduan,
             @Field("isiaduan") String isiaduan,
+            @Field("unitlayanan") String unitlayanan,
             @Field("foto1") String foto1,
             @Field("gps1") String gps1
     );
@@ -160,4 +161,10 @@ public interface InterfaceService {
             @Field("dummyparams") String params
     );
 
+    @FormUrlEncoded
+    @POST("pelanggan/getlistpasangbaru")
+    Call<ResponsePasangBaru> getListPasangBaru(
+            @Field("token") String token,
+            @Field("nohandphone") String nohandphone
+    );
 }

@@ -20,4 +20,7 @@ public interface UnitInterfaceDao {
 
     @Query("SELECT * FROM DataUnit")
     List<DataUnit> getAllUnit();
+
+    @Query("SELECT * FROM DataUnit WHERE unit = :unit")
+    DataUnit getUnit(String unit);
 }

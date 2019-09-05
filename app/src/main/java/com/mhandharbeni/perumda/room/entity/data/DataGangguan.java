@@ -1,11 +1,14 @@
 package com.mhandharbeni.perumda.room.entity.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class DataGangguan implements Serializable {
+public class DataGangguan implements Parcelable {
     @SerializedName("id_gangguan")
     @Expose
     private String idGangguan;
@@ -30,6 +33,29 @@ public class DataGangguan implements Serializable {
     @SerializedName("status")
     @Expose
     private String status;
+
+    protected DataGangguan(Parcel in) {
+        idGangguan = in.readString();
+        judulGangguan = in.readString();
+        ketGangguan = in.readString();
+        unitGangguan = in.readString();
+        wilTerdampak = in.readString();
+        tglGangguan = in.readString();
+        foto = in.readString();
+        status = in.readString();
+    }
+
+    public static final Creator<DataGangguan> CREATOR = new Creator<DataGangguan>() {
+        @Override
+        public DataGangguan createFromParcel(Parcel in) {
+            return new DataGangguan(in);
+        }
+
+        @Override
+        public DataGangguan[] newArray(int size) {
+            return new DataGangguan[size];
+        }
+    };
 
     public String getIdGangguan() {
         return idGangguan;
@@ -93,5 +119,22 @@ public class DataGangguan implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idGangguan);
+        dest.writeString(judulGangguan);
+        dest.writeString(ketGangguan);
+        dest.writeString(unitGangguan);
+        dest.writeString(wilTerdampak);
+        dest.writeString(tglGangguan);
+        dest.writeString(foto);
+        dest.writeString(status);
     }
 }

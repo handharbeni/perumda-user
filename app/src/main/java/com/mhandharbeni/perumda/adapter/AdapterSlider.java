@@ -23,10 +23,12 @@ import butterknife.ButterKnife;
 public class AdapterSlider extends SliderViewAdapter<AdapterSlider.ViewHolder> {
     Context context;
     List<DataImageSlider> listImageSlider = new ArrayList<>();
+    ListenerSlider listenerSlider;
 
-    public AdapterSlider(Context context, List<DataImageSlider> listImageSlider) {
+    public AdapterSlider(Context context, List<DataImageSlider> listImageSlider, ListenerSlider listenerSlider) {
         this.context = context;
         this.listImageSlider = listImageSlider;
+        this.listenerSlider = listenerSlider;
     }
 
     @Override
@@ -38,6 +40,9 @@ public class AdapterSlider extends SliderViewAdapter<AdapterSlider.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.bindData(listImageSlider.get(position));
+        viewHolder.imageViewBackground.setOnClickListener(v -> {
+            this.listenerSlider.onSliderClick();
+        });
     }
 
     @Override
@@ -60,5 +65,8 @@ public class AdapterSlider extends SliderViewAdapter<AdapterSlider.ViewHolder> {
             Glide.with(context).load(dataImageSlider.getFoto()).optionalCenterCrop().into(imageViewBackground);
             textViewDescription.setText(dataImageSlider.getKeterangan());
         }
+    }
+    public interface ListenerSlider{
+        void onSliderClick();
     }
 }

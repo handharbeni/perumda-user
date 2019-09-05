@@ -1,9 +1,12 @@
 package com.mhandharbeni.perumda;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +30,7 @@ import com.mhandharbeni.perumda.room.entity.ResponseGangguan;
 import com.mhandharbeni.perumda.room.entity.data.DataGangguan;
 import com.mhandharbeni.perumda.room.entity.data.DataImageSlider;
 import com.mhandharbeni.perumda.sub_activity.DetailGangguanActivity;
+import com.mhandharbeni.perumda.sub_activity.DetailPromoActivity;
 import com.mhandharbeni.perumda.utils.BaseActivity;
 import com.mhandharbeni.perumda.utils.Constant;
 import com.smarteist.autoimageslider.IndicatorAnimations;
@@ -35,6 +39,7 @@ import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +49,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements AdapterBerita.ListenerGangguan {
+public class MainActivity extends BaseActivity implements AdapterBerita.ListenerGangguan, AdapterSlider.ListenerSlider {
+
+    public static final String EXTRA_GANGGUAN_ITEM = "gangguan_item";
+    public static final String EXTRA_GANGGUAN_IMAGE_TRANSITION_NAME = "gangguan_image_transition_name";
+    public static final String EXTRA_GANGGUAN_TITLE_TRANSITION_NAME = "gangguan_title_transition_name";
     InterfaceService interfaceService;
 
     @BindView(R.id.btnInfoTagihan)
@@ -128,6 +137,11 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
         startActivity(new Intent(this, MapLoketActivity.class));
     }
 
+    @OnClick(R.id.imageSlider)
+    public void showAllPromo(){
+        startActivity(new Intent(this, DetailPromoActivity.class));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -161,16 +175,31 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
 
     private void initSlider(){
         List<DataImageSlider> listImageSlider = new ArrayList<>(AppDb.getInstance(getApplicationContext()).imageSliderInterfaceDao().getAll());
-        AdapterSlider adapterSlider = new AdapterSlider(getApplicationContext(), listImageSlider);
+        AdapterSlider adapterSlider = new AdapterSlider(getApplicationContext(), listImageSlider, this);
         imageSlider.setSliderAdapter(adapterSlider);
         imageSlider.setScrollTimeInSec(6);
+        imageSlider.setIndicatorUnselectedColor(Color.RED);
         imageSlider.setIndicatorAnimation(IndicatorAnimations.WORM);
         imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         imageSlider.startAutoCycle();
     }
 
     @Override
-    public void onGangguanClick(DataGangguan dataGangguan) {
-//        startActivity(new Intent(this, DetailGangguanActivity.class));
+    public void onGangguanClick(int position, DataGangguan dataGangguan, ImageView imageView) {
+        Intent intent = new Intent(this, DetailGangguanActivity.class);
+        intent.putExtra(EXTRA_GANGGUAN_ITEM, dataGangguan);
+        intent.putExtra(EXTRA_GANGGUAN_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(imageView));
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                imageView,
+                Objects.requireNonNull(ViewCompat.getTransitionName(imageView)));
+
+        startActivity(intent, options.toBundle());
+    }
+
+    @Override
+    public void onSliderClick() {
+        startActivity(new Intent(this, DetailPromoActivity.class));
     }
 }

@@ -88,6 +88,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:enabled="false"
                 android:inputType="text"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
@@ -102,8 +103,8 @@
             app:srcCompat="@drawable/ic_photo_camera"
             android:src="@drawable/ic_photo_camera"
             android:layout_gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             tools:ignore="VectorDrawableCompat" />
         <Button
             android:text="SIMPAN"

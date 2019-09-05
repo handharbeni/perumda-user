@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DataPasangBaru {
+
+    @SerializedName("id")
+    @Expose
+    private String id;
     @SerializedName("nama")
     @Expose
     private String nama;
@@ -19,12 +23,26 @@ public class DataPasangBaru {
     @SerializedName("lokasipasang")
     @Expose
     private String lokasipasang;
+    @SerializedName("gpslong")
+    @Expose
+    private String gpslong;
+    @SerializedName("gpslat")
+    @Expose
+    private String gpslat;
     @SerializedName("fotoktp")
     @Expose
-    private String fotoktp;
+    private Object fotoktp;
     @SerializedName("status")
     @Expose
-    private String status;
+    private Object status;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNama() {
         return nama;
@@ -66,19 +84,36 @@ public class DataPasangBaru {
         this.lokasipasang = lokasipasang;
     }
 
-    public String getFotoktp() {
+    public String getGpslong() {
+        return gpslong;
+    }
+
+    public void setGpslong(String gpslong) {
+        this.gpslong = gpslong;
+    }
+
+    public String getGpslat() {
+        return gpslat;
+    }
+
+    public void setGpslat(String gpslat) {
+        this.gpslat = gpslat;
+    }
+
+    public Object getFotoktp() {
         return fotoktp;
     }
 
-    public void setFotoktp(String fotoktp) {
+    public void setFotoktp(Object fotoktp) {
         this.fotoktp = fotoktp;
     }
 
-    public String getStatus() {
+    public Object getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Object status) {
         this.status = status;
     }
 }
+

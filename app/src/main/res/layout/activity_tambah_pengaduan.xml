@@ -68,6 +68,15 @@
                 android:layout_height="wrap_content"
                 android:hint="alamat" />
         </com.google.android.material.textfield.TextInputLayout>
+        <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/unitlayanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:smsp_floatingLabelColor="@color/colorAccent"
+            app:smsp_floatingLabelText="Unit Layanan"
+            app:smsp_hint="Unit Layanan"
+            app:smsp_hintColor="@color/colorAccent"/>
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -102,14 +111,14 @@
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     app:checkedIconEnabled="true"
-                    android:text="TEKNIS"
+                    android:text="TKNS"
                     android:id="@+id/chipTKNS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     app:checkedIconEnabled="true"
-                    android:text="ADMINISTRASI"
+                    android:text="ADM"
                     android:id="@+id/chipADM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -136,8 +145,8 @@
             app:srcCompat="@drawable/ic_photo_camera"
             android:src="@drawable/ic_photo_camera"
             android:layout_gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             tools:ignore="VectorDrawableCompat" />
         <com.google.android.material.textfield.TextInputLayout
             android:visibility="gone"

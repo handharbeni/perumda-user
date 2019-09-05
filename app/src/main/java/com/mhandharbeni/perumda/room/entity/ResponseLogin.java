@@ -6,13 +6,10 @@ import com.mhandharbeni.perumda.room.entity.data.DataLogin;
 
 public class ResponseLogin {
     @SerializedName("code")
-    @Expose
     private String code;
     @SerializedName("message")
-    @Expose
     private String message;
     @SerializedName("data")
-    @Expose
     private DataLogin data;
 
     public String getCode() {
