@@ -14,6 +14,8 @@
             android:layout_width="10dp"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/fotoktp"
             android:src="@drawable/wp_profile"
             android:adjustViewBounds="true"
             android:layout_width="100dp"
@@ -23,27 +25,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/nama"
                 android:text="Nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/alamat"
                 android:text="Alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/noktp"
                 android:text="Nomor KTP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/lokasipasang"
                 android:text="Alamat Persil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:text="Unit Layanan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:text="Status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

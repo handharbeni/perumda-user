@@ -17,6 +17,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.mhandharbeni.perumda.adapter.AdapterBerita;
 import com.mhandharbeni.perumda.adapter.AdapterSlider;
+import com.mhandharbeni.perumda.fragments.ListPasangBaruFragment;
 import com.mhandharbeni.perumda.fragments.ListPengaduanFragment;
 import com.mhandharbeni.perumda.fragments.PasangBaruFragment;
 import com.mhandharbeni.perumda.fragments.ProfileFragment;
@@ -77,6 +78,9 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
     @BindView(R.id.imageSlider)
     SliderView imageSlider;
 
+    @BindView(R.id.btnListPasangBaru)
+    ImageView btnListPasangBaru;
+
     AdapterBerita adapterBerita;
     List<DataGangguan> listGangguan = new ArrayList<>();
 
@@ -130,6 +134,12 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
     public void pasangBaru(){
         PasangBaruFragment pasangBaruFragment = new PasangBaruFragment();
         pasangBaruFragment.show(getSupportFragmentManager(), pasangBaruFragment.getTag());
+    }
+
+    @OnClick(R.id.btnListPasangBaru)
+    public void listPasangBaru(){
+        ListPasangBaruFragment listPasangBaruFragment = new ListPasangBaruFragment();
+        listPasangBaruFragment.show(getSupportFragmentManager(), listPasangBaruFragment.getTag());
     }
 
     @OnClick(R.id.btnLoket)

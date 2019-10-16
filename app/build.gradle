@@ -29,8 +29,8 @@ android {
         applicationId "com.mhandharbeni.perumda"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2
-        versionName "1.4"
+        versionCode 3
+        versionName "2.0"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
         signingConfig signingConfigs.release
@@ -82,9 +82,9 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
     implementation "androidx.room:room-runtime:2.2.0-beta01"
     annotationProcessor "androidx.room:room-compiler:2.2.0-beta01"
+    implementation "android.arch.work:work-runtime:1.0.1"
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-    implementation "android.arch.work:work-runtime:1.0.1"
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'com.jakewharton:butterknife:10.1.0'

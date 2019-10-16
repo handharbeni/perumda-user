@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DataPasangBaru {
-
     @SerializedName("id")
     @Expose
     private String id;
@@ -31,10 +30,13 @@ public class DataPasangBaru {
     private String gpslat;
     @SerializedName("fotoktp")
     @Expose
-    private Object fotoktp;
+    private String fotoktp;
     @SerializedName("status")
     @Expose
-    private Object status;
+    private String status;
+    @SerializedName("kdunit")
+    @Expose
+    private String kdunit;
 
     public String getId() {
         return id;
@@ -100,20 +102,28 @@ public class DataPasangBaru {
         this.gpslat = gpslat;
     }
 
-    public Object getFotoktp() {
+    public String getFotoktp() {
         return fotoktp;
     }
 
-    public void setFotoktp(Object fotoktp) {
+    public void setFotoktp(String fotoktp) {
         this.fotoktp = fotoktp;
     }
 
-    public Object getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getKdunit() {
+        return kdunit;
+    }
+
+    public void setKdunit(String kdunit) {
+        this.kdunit = kdunit;
     }
 }
 

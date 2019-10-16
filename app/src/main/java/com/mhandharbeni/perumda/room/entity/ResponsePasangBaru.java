@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.mhandharbeni.perumda.room.entity.data.DataPasangBaru;
 
+import java.util.List;
+
 public class ResponsePasangBaru {
     @SerializedName("code")
     @Expose
@@ -13,7 +15,7 @@ public class ResponsePasangBaru {
     private String message;
     @SerializedName("data")
     @Expose
-    private DataPasangBaru data;
+    private List<DataPasangBaru> data;
 
     public String getCode() {
         return code;
@@ -31,11 +33,11 @@ public class ResponsePasangBaru {
         this.message = message;
     }
 
-    public DataPasangBaru getData() {
+    public List<DataPasangBaru> getData() {
         return data;
     }
 
-    public void setData(DataPasangBaru data) {
+    public void setData(List<DataPasangBaru> data) {
         this.data = data;
     }
 }
