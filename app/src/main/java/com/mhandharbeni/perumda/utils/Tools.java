@@ -1,7 +1,10 @@
 package com.mhandharbeni.perumda.utils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Base64;
 import android.widget.EditText;
 
@@ -29,5 +32,14 @@ public class Tools {
             return false;
         }
     }
-
+    public static void startNewActivity(Context context, String packageName) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent == null) {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + packageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 }

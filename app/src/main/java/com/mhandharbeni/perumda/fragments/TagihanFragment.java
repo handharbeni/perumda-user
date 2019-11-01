@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,6 +67,15 @@ public class TagihanFragment extends BottomSheetDialogFragment {
     TextView txtNominal;
     @BindView(R.id.txtStatusBayar)
     TextView txtStatusBayar;
+
+    @BindView(R.id.btnbukalapak)
+    CardView btnbukalapak;
+    @BindView(R.id.btntokopedia)
+    CardView btntokopedia;
+    @BindView(R.id.btnshopee)
+    CardView btnshopee;
+    @BindView(R.id.btngojek)
+    CardView btngojek;
 
     @BindView(R.id.cvResult)
     CardView cvResult;
@@ -160,5 +171,25 @@ public class TagihanFragment extends BottomSheetDialogFragment {
                 }
             });
         }
+    }
+
+    @OnClick({R.id.btnbukalapak, R.id.btntokopedia, R.id.btnshopee, R.id.btngojek})
+    public void openBukalapak(View view){
+        String packageName = Constant.PAYMENT.BUKALAPAK.getPackageName();
+        switch (view.getId()){
+            case R.id.btnbukalapak :
+                packageName = Constant.PAYMENT.BUKALAPAK.getPackageName();
+                break;
+            case R.id.btntokopedia :
+                packageName = Constant.PAYMENT.TOKOPEDIA.getPackageName();
+                break;
+            case R.id.btnshopee :
+                packageName = Constant.PAYMENT.SHOPEE.getPackageName();
+                break;
+            case R.id.btngojek :
+                packageName = Constant.PAYMENT.GOJEK.getPackageName();
+                break;
+        }
+        Tools.startNewActivity(getActivity().getApplicationContext(), packageName);
     }
 }

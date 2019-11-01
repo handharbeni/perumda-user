@@ -102,8 +102,8 @@
                                 style="?android:borderlessButtonStyle"
                                 android:scaleType="fitCenter"
                                 android:layout_gravity="center"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="@dimen/size_icon"
+                                android:layout_height="@dimen/size_icon"
                                 app:srcCompat="@drawable/ic_info"
                                 android:src="@drawable/ic_info"/>
                             <TextView
@@ -131,8 +131,8 @@
                                 style="?android:borderlessButtonStyle"
                                 android:scaleType="fitCenter"
                                 android:layout_gravity="center"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="@dimen/size_icon"
+                                android:layout_height="@dimen/size_icon"
                                 app:srcCompat="@drawable/ic_list_pengaduan"
                                 android:src="@drawable/ic_list_pengaduan"/>
                             <TextView
@@ -160,8 +160,8 @@
                                 style="?android:borderlessButtonStyle"
                                 android:scaleType="fitCenter"
                                 android:layout_gravity="center"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="@dimen/size_icon"
+                                android:layout_height="@dimen/size_icon"
                                 app:srcCompat="@drawable/ic_pengaduan"
                                 android:src="@drawable/ic_pengaduan"/>
                             <TextView
@@ -189,8 +189,8 @@
                                 style="?android:borderlessButtonStyle"
                                 android:scaleType="fitCenter"
                                 android:layout_gravity="center"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="@dimen/size_icon"
+                                android:layout_height="@dimen/size_icon"
                                 app:srcCompat="@drawable/ic_loket"
                                 android:src="@drawable/ic_loket"/>
                             <TextView
@@ -218,8 +218,8 @@
                                 style="?android:borderlessButtonStyle"
                                 android:scaleType="fitCenter"
                                 android:layout_gravity="center"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="@dimen/size_icon"
+                                android:layout_height="@dimen/size_icon"
                                 app:srcCompat="@drawable/ic_pasang_baru"
                                 android:src="@drawable/ic_pasang_baru"/>
                             <TextView
@@ -247,8 +247,8 @@
                                 style="?android:borderlessButtonStyle"
                                 android:scaleType="fitCenter"
                                 android:layout_gravity="center"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="@dimen/size_icon"
+                                android:layout_height="@dimen/size_icon"
                                 app:srcCompat="@drawable/ic_pasang_baru"
                                 android:src="@drawable/ic_pasang_baru"/>
                             <TextView
@@ -328,7 +328,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:id="@+id/rvGangguan"
-        app:behavior_overlapTop="110dp"
+        app:behavior_overlapTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
