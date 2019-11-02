@@ -1,6 +1,7 @@
 package com.mhandharbeni.perumda.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mhandharbeni.perumda.R;
-import com.mhandharbeni.perumda.room.entity.data.DataInfo;
+import com.mhandharbeni.perumda.room.entity.data.DataPesan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdapterInfo extends RecyclerView.Adapter<AdapterInfo.ViewHolder> {
+import static io.fabric.sdk.android.Fabric.TAG;
+
+public class AdapterPesan extends RecyclerView.Adapter<AdapterPesan.ViewHolder> {
     private Context context;
-    private List<DataInfo> listInfo = new ArrayList<>();
+    private List<DataPesan> listInfo = new ArrayList<>();
     private AdapterInfoInterface adapterInfoInterface;
 
-    public AdapterInfo(Context context, List<DataInfo> listInfo, AdapterInfoInterface adapterInfoInterface) {
+    public AdapterPesan(Context context, List<DataPesan> listInfo, AdapterInfoInterface adapterInfoInterface) {
         this.context = context;
         this.listInfo = listInfo;
         this.adapterInfoInterface = adapterInfoInterface;
@@ -37,8 +40,8 @@ public class AdapterInfo extends RecyclerView.Adapter<AdapterInfo.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DataInfo dataInfo = listInfo.get(position);
-        holder.bind(dataInfo);
+        DataPesan dataPesan = listInfo.get(position);
+        holder.bind(dataPesan);
     }
 
     @Override
@@ -46,8 +49,7 @@ public class AdapterInfo extends RecyclerView.Adapter<AdapterInfo.ViewHolder> {
         return listInfo.size();
     }
 
-    public void update(List<DataInfo> listInfos){
-        this.listInfo.clear();
+    public void update(List<DataPesan> listInfos){
         this.listInfo.addAll(listInfos);
         this.notifyDataSetChanged();
     }
@@ -67,15 +69,16 @@ public class AdapterInfo extends RecyclerView.Adapter<AdapterInfo.ViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(DataInfo dataInfo){
-            infotitle.setText(dataInfo.getTitle());
-            infodesc.setText(dataInfo.getDescription());
-            infostatus.setText(dataInfo.getStatus());
-            infodate.setText(dataInfo.getDate());
+        public void bind(DataPesan dataPesan){
+            Log.d(TAG, "onBindViewHolder bind: "+dataPesan.getTitle());
+            infotitle.setText(dataPesan.getTitle());
+            infodesc.setText(dataPesan.getDescription());
+            infostatus.setText(dataPesan.getStatus());
+            infodate.setText(dataPesan.getDate());
         }
     }
 
     public interface AdapterInfoInterface{
-        void onInfoClick(DataInfo dataInfo);
+        void onInfoClick(DataPesan dataPesan);
     }
 }

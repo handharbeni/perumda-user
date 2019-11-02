@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.mhandharbeni.perumda.R;
-import com.mhandharbeni.perumda.adapter.AdapterInfo;
+import com.mhandharbeni.perumda.adapter.AdapterPesan;
 import com.mhandharbeni.perumda.network.Client;
 import com.mhandharbeni.perumda.network.InterfaceService;
 import com.mhandharbeni.perumda.preferences.AppPreferences;
-import com.mhandharbeni.perumda.room.entity.ResponseInfo;
-import com.mhandharbeni.perumda.room.entity.data.DataInfo;
+import com.mhandharbeni.perumda.room.entity.ResponsePesan;
+import com.mhandharbeni.perumda.room.entity.data.DataPesan;
 import com.mhandharbeni.perumda.utils.Constant;
 
 import java.util.ArrayList;
@@ -32,9 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static io.fabric.sdk.android.Fabric.TAG;
-
-public class InfoFragment extends BottomSheetDialogFragment implements AdapterInfo.AdapterInfoInterface {
+public class PesanFragment extends BottomSheetDialogFragment implements AdapterPesan.AdapterInfoInterface {
     InterfaceService interfaceService;
     private Unbinder unbinder;
     private View view;
@@ -45,10 +43,15 @@ public class InfoFragment extends BottomSheetDialogFragment implements AdapterIn
     @BindView(R.id.listinfo)
     RecyclerView rvInfo;
 
-    private AdapterInfo adapterInfo;
-    private List<DataInfo> listInfo = new ArrayList<>();
+    private AdapterPesan adapterPesan;
+    private List<DataPesan> listInfo = new ArrayList<>();
 
-    public InfoFragment() {
+    public PesanFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Nullable
@@ -68,44 +71,44 @@ public class InfoFragment extends BottomSheetDialogFragment implements AdapterIn
     }
 
     private void initAdapter(){
-        adapterInfo = new AdapterInfo(getActivity().getApplicationContext(), listInfo, this);
+        adapterPesan = new AdapterPesan(getActivity().getApplicationContext(), listInfo, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         rvInfo.setLayoutManager(linearLayoutManager);
-        rvInfo.setAdapter(adapterInfo);
+        rvInfo.setAdapter(adapterPesan);
     }
 
     private void initData(){
-        for (int i=0; i<10;i++){
-            DataInfo dataInfo = new DataInfo();
-            dataInfo.setTitle(String.valueOf(i));
-            dataInfo.setDescription(String.valueOf(i));
-            dataInfo.setStatus(String.valueOf(i));
-            dataInfo.setDate(String.valueOf(i));
-            listInfo.add(dataInfo);
-        }
-        adapterInfo.update(listInfo);
-//        loading.setVisibility(View.VISIBLE);
-//        Call<ResponseInfo> callInfo = interfaceService.getInfo(AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.TOKEN_PDAM, ""));
-//        callInfo.enqueue(new Callback<ResponseInfo>() {
-//            @Override
-//            public void onResponse(Call<ResponseInfo> call, Response<ResponseInfo> response) {
-//                if (response.isSuccessful()){
-//                    if (response.body().getCode().equalsIgnoreCase("200")){
-//                        listInfo.clear();
-//                        listInfo.addAll(response.body().getData());
-//                        adapterInfo.update(listInfo);
-//                        rvInfo.setVisibility(View.VISIBLE);
-//                        Log.d(TAG, "onResponse: "+String.valueOf(response.body().getData().size()));
-//                    }
-//                }
-//                loading.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseInfo> call, Throwable t) {
-//                loading.setVisibility(View.GONE);
-//            }
-//        });
+        listInfo.clear();
+//        for (int i=0; i<10;i++){
+//            DataPesan dataPesan = new DataPesan();
+//            dataPesan.setTitle(String.valueOf(i));
+//            dataPesan.setDescription(String.valueOf(i));
+//            dataPesan.setStatus(String.valueOf(i));
+//            dataPesan.setDate(String.valueOf(i));
+//            listInfo.add(dataPesan);
+//        }
+//        adapterPesan.update(listInfo);
+        loading.setVisibility(View.VISIBLE);
+        Call<ResponsePesan> callInfo = interfaceService.getInfo(AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.TOKEN_PDAM, ""));
+        callInfo.enqueue(new Callback<ResponsePesan>() {
+            @Override
+            public void onResponse(Call<ResponsePesan> call, Response<ResponsePesan> response) {
+                if (response.isSuccessful()){
+                    if (response.body().getCode().equalsIgnoreCase("200")){
+                        listInfo.clear();
+                        listInfo.addAll(response.body().getData());
+                        adapterPesan.update(listInfo);
+                        rvInfo.setVisibility(View.VISIBLE);
+                    }
+                }
+                loading.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePesan> call, Throwable t) {
+                loading.setVisibility(View.GONE);
+            }
+        });
 
     }
 
@@ -128,7 +131,7 @@ public class InfoFragment extends BottomSheetDialogFragment implements AdapterIn
     }
 
     @Override
-    public void onInfoClick(DataInfo dataInfo) {
+    public void onInfoClick(DataPesan dataPesan) {
 
     }
 }

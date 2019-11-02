@@ -2,11 +2,11 @@ package com.mhandharbeni.perumda.room.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.mhandharbeni.perumda.room.entity.data.DataInfo;
+import com.mhandharbeni.perumda.room.entity.data.DataPesan;
 
 import java.util.List;
 
-public class ResponseInfo {
+public class ResponsePesan {
     @SerializedName("code")
     @Expose
     private String code;
@@ -15,7 +15,7 @@ public class ResponseInfo {
     private String message;
     @SerializedName("data")
     @Expose
-    private List<DataInfo> data = null;
+    private List<DataPesan> data = null;
 
     public String getCode() {
         return code;
@@ -33,11 +33,11 @@ public class ResponseInfo {
         this.message = message;
     }
 
-    public List<DataInfo> getData() {
+    public List<DataPesan> getData() {
         return data;
     }
 
-    public void setData(List<DataInfo> data) {
+    public void setData(List<DataPesan> data) {
         this.data = data;
     }
 }

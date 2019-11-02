@@ -17,8 +17,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.mhandharbeni.perumda.adapter.AdapterBerita;
 import com.mhandharbeni.perumda.adapter.AdapterSlider;
-import com.mhandharbeni.perumda.fragments.InfoFragment;
-import com.mhandharbeni.perumda.fragments.ListPasangBaruFragment;
+import com.mhandharbeni.perumda.fragments.PesanFragment;
 import com.mhandharbeni.perumda.fragments.ListPengaduanFragment;
 import com.mhandharbeni.perumda.fragments.PasangBaruFragment;
 import com.mhandharbeni.perumda.fragments.ProfileFragment;
@@ -163,8 +162,8 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
     public void listPasangBaru(){
 //        ListPasangBaruFragment listPasangBaruFragment = new ListPasangBaruFragment();
 //        listPasangBaruFragment.show(getSupportFragmentManager(), listPasangBaruFragment.getTag());
-//        InfoFragment infoFragment = new InfoFragment();
-//        infoFragment.show(getSupportFragmentManager(), infoFragment.getTag());
+        PesanFragment pesanFragment = new PesanFragment();
+        pesanFragment.show(getSupportFragmentManager(), pesanFragment.getTag());
     }
 
     @OnClick(R.id.btnLoket)

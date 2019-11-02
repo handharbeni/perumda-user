@@ -3,7 +3,7 @@ package com.mhandharbeni.perumda.room.entity.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DataInfo {
+public class DataPesan {
     @SerializedName("title")
     @Expose
     private String title;
@@ -16,6 +16,9 @@ public class DataInfo {
     @SerializedName("date")
     @Expose
     private String date;
+
+    public DataPesan() {
+    }
 
     public String getTitle() {
         return title;
