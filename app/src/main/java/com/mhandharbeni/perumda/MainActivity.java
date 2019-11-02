@@ -15,8 +15,9 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.mhandharbeni.perumda.adapter.AdapterBerita;
+import com.mhandharbeni.perumda.adapter.AdapterGangguan;
 import com.mhandharbeni.perumda.adapter.AdapterSlider;
+import com.mhandharbeni.perumda.fragments.BeritaFragment;
 import com.mhandharbeni.perumda.fragments.PesanFragment;
 import com.mhandharbeni.perumda.fragments.ListPengaduanFragment;
 import com.mhandharbeni.perumda.fragments.PasangBaruFragment;
@@ -51,7 +52,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements AdapterBerita.ListenerGangguan, AdapterSlider.ListenerSlider {
+public class MainActivity extends BaseActivity implements AdapterGangguan.ListenerGangguan, AdapterSlider.ListenerSlider {
 
     public static final String EXTRA_GANGGUAN_ITEM = "gangguan_item";
     public static final String EXTRA_GANGGUAN_IMAGE_TRANSITION_NAME = "gangguan_image_transition_name";
@@ -91,7 +92,7 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
     @BindView(R.id.btnPesan)
     ImageView btnPesan;
 
-    AdapterBerita adapterBerita;
+    AdapterGangguan adapterGangguan;
     List<DataGangguan> listGangguan = new ArrayList<>();
 
     @Override
@@ -166,6 +167,12 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
         pesanFragment.show(getSupportFragmentManager(), pesanFragment.getTag());
     }
 
+    @OnClick(R.id.btnBerita)
+    public void showBerita(){
+        BeritaFragment beritaFragment = new BeritaFragment();
+        beritaFragment.show(getSupportFragmentManager(), beritaFragment.getTag());
+    }
+
     @OnClick(R.id.btnLoket)
     public void showLoket(){
         startActivity(new Intent(this, MapLoketActivity.class));
@@ -183,9 +190,9 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
 
     private void initDataGangguan(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        adapterBerita = new AdapterBerita(listGangguan, getApplicationContext(), this);
+        adapterGangguan = new AdapterGangguan(listGangguan, getApplicationContext(), this);
         rvGangguan.setLayoutManager(linearLayoutManager);
-        rvGangguan.setAdapter(adapterBerita);
+        rvGangguan.setAdapter(adapterGangguan);
 
         String token = AppPreferences.getInstance(getApplicationContext()).getPref(Constant.TOKEN_PDAM, "");
 
@@ -195,7 +202,7 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
             public void onResponse(Call<ResponseGangguan> call, Response<ResponseGangguan> response) {
                 if (response.isSuccessful()){
                     if (response.body().getCode().equalsIgnoreCase("200")){
-                        adapterBerita.updateData(response.body().getData());
+                        adapterGangguan.updateData(response.body().getData());
                     }
                 }
             }

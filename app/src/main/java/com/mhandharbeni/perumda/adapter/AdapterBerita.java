@@ -8,88 +8,78 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.mhandharbeni.perumda.R;
-import com.mhandharbeni.perumda.room.entity.data.DataGangguan;
+import com.mhandharbeni.perumda.room.entity.data.DataBerita;
+import com.mhandharbeni.perumda.utils.Tools;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.ViewHolder> {
-    List<DataGangguan> listGangguan = new ArrayList<>();
-    Context context;
-    ListenerGangguan listenerGangguan;
+    private Context context;
+    private List<DataBerita> listBerita;
+    private AdapterBeritaInterface adapterBeritaInterface;
 
-    public AdapterBerita(List<DataGangguan> listGangguan, Context context, ListenerGangguan listenerGangguan) {
-        this.listGangguan = listGangguan;
+    public AdapterBerita(Context context, List<DataBerita> listBerita, AdapterBeritaInterface adapterBeritaInterface) {
         this.context = context;
-        this.listenerGangguan = listenerGangguan;
+        this.listBerita = listBerita;
+        this.adapterBeritaInterface = adapterBeritaInterface;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gangguan, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_berita, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DataGangguan dataGangguan = listGangguan.get(position);
-        holder.bindData(dataGangguan);
-        ViewCompat.setTransitionName(holder.gangguancover, dataGangguan.getFoto());
-        holder.itemView.setOnClickListener(view -> {
-            this.listenerGangguan.onGangguanClick(
-                    holder.getAdapterPosition(),
-                    dataGangguan,
-                    holder.gangguancover
-            );
-        });
+        DataBerita dataBerita = listBerita.get(position);
+        holder.bind(dataBerita);
     }
 
     @Override
     public int getItemCount() {
-        return listGangguan.size();
+        return listBerita.size();
     }
 
-    public void updateData(List<DataGangguan> listGangguan){
-        this.listGangguan.clear();
-        this.listGangguan.addAll(listGangguan);
+    public void update(List<DataBerita> listBerita){
+        this.listBerita.addAll(listBerita);
         this.notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.gangguancover)
-        ImageView gangguancover;
-        @BindView(R.id.gangguantitle)
-        TextView gangguantitle;
-        @BindView(R.id.gangguanunit)
-        TextView gangguanunit;
+        @BindView(R.id.beritacategory)
+        TextView beritaCategory;
+        @BindView(R.id.beritadate)
+        TextView beritaDate;
+        @BindView(R.id.beritatitle)
+        TextView beritaTitle;
+        @BindView(R.id.beritadesc)
+        TextView beritaDesc;
+        @BindView(R.id.imageCover)
+        ImageView imageCover;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindData(DataGangguan dataGangguan){
-            try {
-                Glide.with(context).load(dataGangguan.getFoto()).into(gangguancover);
-            }catch (Exception e){
-                Glide.with(context).load(R.drawable.water_wallpaper).into(gangguancover);
-            }
-            gangguantitle.setText(dataGangguan.getJudulGangguan());
-            gangguanunit.setText(dataGangguan.getUnitGangguan());
+        public void bind(DataBerita dataBerita){
+            beritaCategory.setText(dataBerita.getCategory());
+            beritaDate.setText(dataBerita.getDate());
+            beritaTitle.setText(dataBerita.getTitle());
+            beritaDesc.setText(dataBerita.getDescription());
+            Tools.DrawImage(context, imageCover, dataBerita.getImage());
         }
     }
 
-    public interface ListenerGangguan{
-        void onGangguanClick(int position, DataGangguan dataGangguan, ImageView imageView);
+    public interface AdapterBeritaInterface{
+        void onBeritaClick(DataBerita dataBerita);
     }
 }
