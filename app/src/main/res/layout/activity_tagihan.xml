@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_weight="0.8"
+                android:layout_weight="0.999"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +49,7 @@
                 android:gravity="center"
                 android:id="@+id/btnCariTagihan"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="0.2"
+                android:layout_weight="0"
                 android:text="CARI"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
@@ -64,7 +64,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cvResult"
             android:layout_margin="5dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -458,6 +458,70 @@
                                     android:layout_gravity="center"
                                     android:layout_margin="5dp"
                                     android:text="GOJEK"
+                                    android:textSize="@dimen/textsize_card_payment"
+                                    android:textColor="@color/whiteCardColor" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btnblibli"
+                            android:layout_width="@dimen/widht_card_payment"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="@color/colorAccent"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="5dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/size_payment"
+                                    android:layout_height="@dimen/size_payment"
+                                    android:layout_margin="5dp"
+                                    android:src="@drawable/blibli" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:text="BLIBLI"
+                                    android:textSize="@dimen/textsize_card_payment"
+                                    android:textColor="@color/whiteCardColor" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btnbbayar"
+                            android:layout_width="@dimen/widht_card_payment"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="@color/colorAccent"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="5dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/size_payment"
+                                    android:layout_height="@dimen/size_payment"
+                                    android:layout_margin="5dp"
+                                    android:src="@drawable/bbayar" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:text="BEBAS BAYAR"
                                     android:textSize="@dimen/textsize_card_payment"
                                     android:textColor="@color/whiteCardColor" />
                             </LinearLayout>

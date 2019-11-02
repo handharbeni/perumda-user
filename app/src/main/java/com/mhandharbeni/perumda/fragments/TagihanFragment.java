@@ -76,6 +76,10 @@ public class TagihanFragment extends BottomSheetDialogFragment {
     CardView btnshopee;
     @BindView(R.id.btngojek)
     CardView btngojek;
+    @BindView(R.id.btnblibli)
+    CardView btnblibli;
+    @BindView(R.id.btnbbayar)
+    CardView btnbbayar;
 
     @BindView(R.id.cvResult)
     CardView cvResult;
@@ -173,7 +177,7 @@ public class TagihanFragment extends BottomSheetDialogFragment {
         }
     }
 
-    @OnClick({R.id.btnbukalapak, R.id.btntokopedia, R.id.btnshopee, R.id.btngojek})
+    @OnClick({R.id.btnbukalapak, R.id.btntokopedia, R.id.btnshopee, R.id.btngojek, R.id.btnbbayar, R.id.btnblibli})
     public void openBukalapak(View view){
         String packageName = Constant.PAYMENT.BUKALAPAK.getPackageName();
         switch (view.getId()){
@@ -188,6 +192,12 @@ public class TagihanFragment extends BottomSheetDialogFragment {
                 break;
             case R.id.btngojek :
                 packageName = Constant.PAYMENT.GOJEK.getPackageName();
+                break;
+            case R.id.btnblibli :
+                packageName = Constant.PAYMENT.BLIBLI.getPackageName();
+                break;
+            case R.id.btnbbayar :
+                packageName = Constant.PAYMENT.BEBAS_BAYAR.getPackageName();
                 break;
         }
         Tools.startNewActivity(getActivity().getApplicationContext(), packageName);

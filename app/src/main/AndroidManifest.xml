@@ -43,6 +43,7 @@
         <activity android:name=".sub_activity.DetailPengaduanActivity" />
         <activity android:name=".sub_activity.DetailGangguanActivity" />
         <activity android:name=".sub_activity.DetailPromoActivity" />
+        <activity android:name=".sub_activity.DataBeritaActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

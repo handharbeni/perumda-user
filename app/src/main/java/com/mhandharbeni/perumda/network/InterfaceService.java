@@ -10,6 +10,7 @@ import com.mhandharbeni.perumda.room.entity.ResponseLogin;
 import com.mhandharbeni.perumda.room.entity.ResponseLoket;
 import com.mhandharbeni.perumda.room.entity.ResponsePasangBaru;
 import com.mhandharbeni.perumda.room.entity.ResponsePengaduan;
+import com.mhandharbeni.perumda.room.entity.ResponsePoint;
 import com.mhandharbeni.perumda.room.entity.ResponseProfile;
 import com.mhandharbeni.perumda.room.entity.ResponseProgressPengaduan;
 import com.mhandharbeni.perumda.room.entity.ResponseRegister;
@@ -179,6 +180,12 @@ public interface InterfaceService {
     @FormUrlEncoded
     @POST("berita/data")
     Call<ResponseBerita> getDataBerita(
+            @Field("token") String token
+    );
+
+    @FormUrlEncoded
+    @POST("pesan/point")
+    Call<ResponsePoint> getPoint(
             @Field("token") String token
     );
 }

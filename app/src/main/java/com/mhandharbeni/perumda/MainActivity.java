@@ -21,6 +21,7 @@ import com.mhandharbeni.perumda.fragments.BeritaFragment;
 import com.mhandharbeni.perumda.fragments.PesanFragment;
 import com.mhandharbeni.perumda.fragments.ListPengaduanFragment;
 import com.mhandharbeni.perumda.fragments.PasangBaruFragment;
+import com.mhandharbeni.perumda.fragments.PointFragment;
 import com.mhandharbeni.perumda.fragments.ProfileFragment;
 import com.mhandharbeni.perumda.fragments.TagihanFragment;
 import com.mhandharbeni.perumda.fragments.TambahPengaduanFragment;
@@ -171,6 +172,12 @@ public class MainActivity extends BaseActivity implements AdapterGangguan.Listen
     public void showBerita(){
         BeritaFragment beritaFragment = new BeritaFragment();
         beritaFragment.show(getSupportFragmentManager(), beritaFragment.getTag());
+    }
+
+    @OnClick(R.id.btnPoint)
+    public void showPoint(){
+        PointFragment pointFragment = new PointFragment();
+        pointFragment.show(getSupportFragmentManager(), pointFragment.getTag());
     }
 
     @OnClick(R.id.btnLoket)

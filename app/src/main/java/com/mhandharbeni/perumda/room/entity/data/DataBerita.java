@@ -3,7 +3,9 @@ package com.mhandharbeni.perumda.room.entity.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DataBerita {
+import java.io.Serializable;
+
+public class DataBerita implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;

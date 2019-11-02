@@ -1,5 +1,6 @@
 package com.mhandharbeni.perumda.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.mhandharbeni.perumda.preferences.AppPreferences;
 import com.mhandharbeni.perumda.room.entity.ResponseBerita;
 import com.mhandharbeni.perumda.room.entity.ResponsePesan;
 import com.mhandharbeni.perumda.room.entity.data.DataBerita;
+import com.mhandharbeni.perumda.sub_activity.DataBeritaActivity;
 import com.mhandharbeni.perumda.utils.Constant;
 
 import java.util.ArrayList;
@@ -127,6 +129,8 @@ public class BeritaFragment extends BottomSheetDialogFragment implements Adapter
 
     @Override
     public void onBeritaClick(DataBerita dataBerita) {
-
+        Intent intent = new Intent(getActivity().getApplicationContext(), DataBeritaActivity.class);
+        intent.putExtra(Constant.SERIALIZABLE_BERITA, dataBerita);
+        getActivity().startActivity(intent);
     }
 }

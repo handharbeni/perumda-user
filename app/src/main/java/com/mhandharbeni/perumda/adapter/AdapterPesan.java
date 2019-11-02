@@ -23,7 +23,7 @@ import static io.fabric.sdk.android.Fabric.TAG;
 
 public class AdapterPesan extends RecyclerView.Adapter<AdapterPesan.ViewHolder> {
     private Context context;
-    private List<DataPesan> listInfo = new ArrayList<>();
+    private List<DataPesan> listInfo;
     private AdapterInfoInterface adapterInfoInterface;
 
     public AdapterPesan(Context context, List<DataPesan> listInfo, AdapterInfoInterface adapterInfoInterface) {

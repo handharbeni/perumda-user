@@ -41,6 +41,12 @@ public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DataBerita dataBerita = listBerita.get(position);
         holder.bind(dataBerita);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapterBeritaInterface.onBeritaClick(dataBerita);
+            }
+        });
     }
 
     @Override

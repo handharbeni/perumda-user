@@ -78,16 +78,6 @@ public class PesanFragment extends BottomSheetDialogFragment implements AdapterP
     }
 
     private void initData(){
-        listInfo.clear();
-//        for (int i=0; i<10;i++){
-//            DataPesan dataPesan = new DataPesan();
-//            dataPesan.setTitle(String.valueOf(i));
-//            dataPesan.setDescription(String.valueOf(i));
-//            dataPesan.setStatus(String.valueOf(i));
-//            dataPesan.setDate(String.valueOf(i));
-//            listInfo.add(dataPesan);
-//        }
-//        adapterPesan.update(listInfo);
         loading.setVisibility(View.VISIBLE);
         Call<ResponsePesan> callInfo = interfaceService.getInfo(AppPreferences.getInstance(getActivity().getApplicationContext()).getPref(Constant.TOKEN_PDAM, ""));
         callInfo.enqueue(new Callback<ResponsePesan>() {
@@ -95,9 +85,9 @@ public class PesanFragment extends BottomSheetDialogFragment implements AdapterP
             public void onResponse(Call<ResponsePesan> call, Response<ResponsePesan> response) {
                 if (response.isSuccessful()){
                     if (response.body().getCode().equalsIgnoreCase("200")){
-                        listInfo.clear();
-                        listInfo.addAll(response.body().getData());
-                        adapterPesan.update(listInfo);
+//                        listInfo.clear();
+//                        listInfo.addAll();
+                        adapterPesan.update(response.body().getData());
                         rvInfo.setVisibility(View.VISIBLE);
                     }
                 }

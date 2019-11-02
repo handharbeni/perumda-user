@@ -26,7 +26,7 @@
                 android:id="@+id/shadow_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha=".6"
+                android:alpha=".5"
                 android:background="#000000"/>
             <TextView
                 android:layout_toLeftOf="@+id/beritadate"
