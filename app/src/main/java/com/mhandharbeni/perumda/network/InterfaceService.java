@@ -3,6 +3,7 @@ package com.mhandharbeni.perumda.network;
 import com.mhandharbeni.perumda.network.model.GeneralResponse;
 import com.mhandharbeni.perumda.room.entity.ResponseGangguan;
 import com.mhandharbeni.perumda.room.entity.ResponseImageSlider;
+import com.mhandharbeni.perumda.room.entity.ResponseInfo;
 import com.mhandharbeni.perumda.room.entity.ResponseListPengaduan;
 import com.mhandharbeni.perumda.room.entity.ResponseLogin;
 import com.mhandharbeni.perumda.room.entity.ResponseLoket;
@@ -166,5 +167,11 @@ public interface InterfaceService {
     Call<ResponsePasangBaru> getListPasangBaru(
             @Field("token") String token,
             @Field("nohandphone") String nohandphone
+    );
+
+    @FormUrlEncoded
+    @POST("pesan/data")
+    Call<ResponseInfo> getInfo(
+            @Field("token") String token
     );
 }

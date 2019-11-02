@@ -17,6 +17,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.mhandharbeni.perumda.adapter.AdapterBerita;
 import com.mhandharbeni.perumda.adapter.AdapterSlider;
+import com.mhandharbeni.perumda.fragments.InfoFragment;
 import com.mhandharbeni.perumda.fragments.ListPasangBaruFragment;
 import com.mhandharbeni.perumda.fragments.ListPengaduanFragment;
 import com.mhandharbeni.perumda.fragments.PasangBaruFragment;
@@ -34,6 +35,7 @@ import com.mhandharbeni.perumda.sub_activity.DetailGangguanActivity;
 import com.mhandharbeni.perumda.sub_activity.DetailPromoActivity;
 import com.mhandharbeni.perumda.utils.BaseActivity;
 import com.mhandharbeni.perumda.utils.Constant;
+import com.mhandharbeni.perumda.utils.Tools;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -69,6 +71,15 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
     @BindView(R.id.btnLoket)
     ImageView getLoket;
 
+    @BindView(R.id.btnPasangBaru)
+    ImageView btnPasangBaru;
+
+    @BindView(R.id.btnBerita)
+    ImageView btnBerita;
+
+    @BindView(R.id.btnPoint)
+    ImageView btnPoint;
+
     @BindView(R.id.idProfile)
     CircleImageView idProfile;
 
@@ -78,8 +89,8 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
     @BindView(R.id.imageSlider)
     SliderView imageSlider;
 
-    @BindView(R.id.btnListPasangBaru)
-    ImageView btnListPasangBaru;
+    @BindView(R.id.btnPesan)
+    ImageView btnPesan;
 
     AdapterBerita adapterBerita;
     List<DataGangguan> listGangguan = new ArrayList<>();
@@ -104,6 +115,18 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
         }).check();
         initDataGangguan();
         initSlider();
+        initIcon();
+    }
+
+    private void initIcon(){
+        Tools.DrawImage(getApplicationContext(), btnInfoTagihan, Constant.ICON.PEMBAYARAN.getUrl());
+        Tools.DrawImage(getApplicationContext(), btnListPengaduan, Constant.ICON.STATUS_PENGADUAN.getUrl());
+        Tools.DrawImage(getApplicationContext(), btnTambahPengaduan, Constant.ICON.PENGADUAN.getUrl());
+        Tools.DrawImage(getApplicationContext(), getLoket, Constant.ICON.LOKET.getUrl());
+        Tools.DrawImage(getApplicationContext(), btnPasangBaru, Constant.ICON.PASBA.getUrl());
+        Tools.DrawImage(getApplicationContext(), btnBerita, Constant.ICON.BERITA.getUrl());
+        Tools.DrawImage(getApplicationContext(), btnPoint, Constant.ICON.POINT.getUrl());
+        Tools.DrawImage(getApplicationContext(), btnPesan, Constant.ICON.PESAN.getUrl());
     }
 
     @OnClick(R.id.idProfile)
@@ -136,10 +159,12 @@ public class MainActivity extends BaseActivity implements AdapterBerita.Listener
         pasangBaruFragment.show(getSupportFragmentManager(), pasangBaruFragment.getTag());
     }
 
-    @OnClick(R.id.btnListPasangBaru)
+    @OnClick(R.id.btnPesan)
     public void listPasangBaru(){
-        ListPasangBaruFragment listPasangBaruFragment = new ListPasangBaruFragment();
-        listPasangBaruFragment.show(getSupportFragmentManager(), listPasangBaruFragment.getTag());
+//        ListPasangBaruFragment listPasangBaruFragment = new ListPasangBaruFragment();
+//        listPasangBaruFragment.show(getSupportFragmentManager(), listPasangBaruFragment.getTag());
+//        InfoFragment infoFragment = new InfoFragment();
+//        infoFragment.show(getSupportFragmentManager(), infoFragment.getTag());
     }
 
     @OnClick(R.id.btnLoket)

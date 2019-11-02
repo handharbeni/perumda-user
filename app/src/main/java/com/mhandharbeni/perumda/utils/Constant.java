@@ -3,6 +3,8 @@ package com.mhandharbeni.perumda.utils;
 
 import android.Manifest;
 
+import com.mhandharbeni.perumda.R;
+
 public class Constant {
     public static final int versionDb = 4;
     public static final String nameDb = "perumda.db";
@@ -45,17 +47,38 @@ public class Constant {
     public static String SERIALIZABLE_PENGADUAN = "DataPengaduan";
 
     public static enum PAYMENT{
-        TOKOPEDIA("com.tokopedia.tkpd"),
-        GOJEK("com.gojek.app"),
-        BUKALAPAK("com.bukalapak.android"),
-        SHOPEE("com.shopee.id"),
-        DANA("id.dana");
+        TOKOPEDIA(R.drawable.tokopedia, "com.tokopedia.tkpd"),
+        GOJEK(R.drawable.gojek, "com.gojek.app"),
+        BUKALAPAK(R.drawable.bukalapak, "com.bukalapak.android"),
+        SHOPEE(R.drawable.shopee, "com.shopee.id");
+        private int drawable;
         private String packageName;
-        PAYMENT(String packageName){
+        PAYMENT(int drawable, String packageName){
             this.packageName = packageName;
         }
         public String getPackageName(){
             return this.packageName;
+        }
+        public int getDrawable(){
+            return drawable;
+        }
+    }
+
+    public static enum ICON{
+        BERITA("https://api.pdamkabmalang.com/icon/berita.png"),
+        LOKET("https://api.pdamkabmalang.com/icon/loket.png"),
+        PASBA("https://api.pdamkabmalang.com/icon/pasba.png"),
+        PEMBAYARAN("https://api.pdamkabmalang.com/icon/pembayaran.png"),
+        PENGADUAN("https://api.pdamkabmalang.com/icon/pengaduan.png"),
+        STATUS_PENGADUAN("https://api.pdamkabmalang.com/icon/status_pengaduan.png"),
+        POINT("https://api.pdamkabmalang.com/icon/point.png"),
+        PESAN("https://api.pdamkabmalang.com/icon/pesan.png");
+        private String url;
+        ICON(String url){
+            this.url = url;
+        }
+        public String getUrl(){
+            return this.url;
         }
     }
 }

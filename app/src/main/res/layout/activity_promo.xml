@@ -60,7 +60,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
-                        app:srcCompat="@drawable/ic_perumda_title"
+                        app:srcCompat="@drawable/mascot"
                         android:text="@string/app_name"
                         android:textColor="#ffffff"
                         android:textSize="20sp"

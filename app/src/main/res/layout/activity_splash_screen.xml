@@ -25,9 +25,9 @@
             android:background="#000000"/>
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/ic_perumda_title"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/mascot"
         android:layout_centerInParent="true"/>
     <TextView
         android:visibility="gone"

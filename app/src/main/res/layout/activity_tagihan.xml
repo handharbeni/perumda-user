@@ -64,7 +64,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cvResult"
             android:layout_margin="5dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -321,8 +321,8 @@
                         android:layout_height="wrap_content"/>
 
                     <GridLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="141dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:columnCount="2"
                         android:foregroundGravity="center"
@@ -359,6 +359,7 @@
                                     android:layout_gravity="center"
                                     android:layout_margin="5dp"
                                     android:text="BUKALAPAK"
+                                    android:textSize="@dimen/textsize_card_payment"
                                     android:textColor="@color/whiteCardColor" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -391,6 +392,7 @@
                                     android:layout_gravity="center"
                                     android:layout_margin="5dp"
                                     android:text="TOKOPEDIA"
+                                    android:textSize="@dimen/textsize_card_payment"
                                     android:textColor="@color/whiteCardColor" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -423,6 +425,7 @@
                                     android:layout_gravity="center"
                                     android:layout_margin="5dp"
                                     android:text="SHOPEE"
+                                    android:textSize="@dimen/textsize_card_payment"
                                     android:textColor="@color/whiteCardColor" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -455,6 +458,7 @@
                                     android:layout_gravity="center"
                                     android:layout_margin="5dp"
                                     android:text="GOJEK"
+                                    android:textSize="@dimen/textsize_card_payment"
                                     android:textColor="@color/whiteCardColor" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
