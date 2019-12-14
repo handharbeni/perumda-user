@@ -29,8 +29,8 @@ android {
         applicationId "com.mhandharbeni.perumda"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 3
-        versionName "2.0"
+        versionCode 4
+        versionName "3.0"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
         signingConfig signingConfigs.release

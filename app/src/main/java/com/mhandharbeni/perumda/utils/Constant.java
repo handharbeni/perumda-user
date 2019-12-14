@@ -53,6 +53,7 @@ public class Constant {
         BUKALAPAK(R.drawable.bukalapak, "com.bukalapak.android"),
         BLIBLI(R.drawable.blibli, "blibli.mobile.commerce"),
         BEBAS_BAYAR(R.drawable.bbayar, "com.bm.sc.bebasbayar"),
+        SIPIKA(R.drawable.mascot_sipika, "com.bm.sc.sipika"),
         SHOPEE(R.drawable.shopee, "com.shopee.id");
         private int drawable;
         private String packageName;

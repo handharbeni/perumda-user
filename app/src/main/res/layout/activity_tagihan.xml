@@ -64,7 +64,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cvResult"
             android:layout_margin="5dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -319,6 +319,39 @@
                         android:text="Tap metode pembayaran :"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnsipika"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        app:cardBackgroundColor="@color/colorAccent"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="5dp"
+                        app:cardPreventCornerOverlap="false">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/size_payment"
+                                android:layout_height="@dimen/size_payment"
+                                android:layout_margin="5dp"
+                                android:src="@drawable/mascot_sipika" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="SIPIKA"
+                                android:textSize="@dimen/textsize_card_payment"
+                                android:textColor="@color/whiteCardColor" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <GridLayout
                         android:layout_width="match_parent"

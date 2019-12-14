@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">perumda</string>
+    <string name="app_name">MyPIKA</string>
 
     <!--    Styling    -->
     <string name="styled_map_demo_label">Styled Map</string>
